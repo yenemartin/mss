@@ -19,13 +19,29 @@
   </head>
   <body>
     <main class="page-shell">
+      <section class="top-brand" aria-label="Mengesha Software Solutions brand">
+        <img
+          class="top-brand__logo"
+          src="assets/logo-mark.png"
+          alt="Mengesha Software Solutions logo"
+        />
+        <div class="top-brand__copy">
+          <p class="top-brand__name">Mengesha Software Solutions</p>
+          <p class="top-brand__tagline">Software That Helps Local Businesses Grow</p>
+        </div>
+      </section>
+
       <header class="site-nav" aria-label="Section navigation">
-        <a href="#top">Top</a>
-        <a href="#support">Businesses We Support</a>
-        <a href="#options">Explore</a>
-        <a href="#products">Products and Users</a>
-        <a href="#contact">Free Consultation</a>
-        <a href="#inquiry">Email Inquiry</a>
+        <details class="site-menu">
+          <summary>Menu</summary>
+          <nav class="site-menu__panel">
+            <a href="#top">Top</a>
+            <a href="#support">Businesses We Support</a>
+            <a href="#options">Explore</a>
+            <a href="#products">Products and Users</a>
+            <a href="#contact">Free Consultation</a>
+          </nav>
+        </details>
       </header>
 
       <section class="hero" id="top">
@@ -168,7 +184,7 @@
         <a class="option-card" href="tel:4254959974">
           <span class="option-card__icon" aria-hidden="true">📞</span>
           <span class="option-card__title">Book a Free Consultation</span>
-          <span class="option-card__text">Let's talk about your business</span>
+          <span class="option-card__text">Call 425-495-9974</span>
         </a>
       </section>
 
@@ -226,55 +242,18 @@
           </span>
           <div class="contact-panel-card__actions">
             <span>yenemartin@gmail.com</span>
-            <span>425-495-9974</span>
+            <a href="tel:4254959974">425-495-9974</a>
           </div>
         </div>
       </section>
 
-      <section class="inquiry-section" id="inquiry" aria-label="Email inquiry">
-        <p class="section-label">Email inquiry</p>
-        <div class="inquiry-card">
-          <strong>Send a project inquiry</strong>
-          <span>
-            Share your business, what you need, and how we can help. This form copies a ready-to-send
-            inquiry message without opening another app.
-          </span>
-
-          <form class="inquiry-form" id="inquiryForm">
-            <label>
-              Name
-              <input type="text" name="name" placeholder="Your name" />
-            </label>
-            <label>
-              Business
-              <input type="text" name="business" placeholder="Business name" />
-            </label>
-            <label>
-              Email
-              <input type="email" name="email" placeholder="Your email" />
-            </label>
-            <label>
-              What do you need?
-              <textarea
-                name="message"
-                rows="5"
-                placeholder="Restaurant website, food truck ordering, adult home care website, vans, drivers, trucking, or another project."
-              ></textarea>
-            </label>
-            <button class="inquiry-form__button" type="submit">Copy Inquiry Message</button>
-            <p class="inquiry-form__note" id="inquiryNote">
-              Send the copied message to `yenemartin@gmail.com`.
-            </p>
-          </form>
-        </div>
-      </section>
     </main>
 
     <footer class="site-footer">
       <p>Mirtneh Mengesha</p>
       <p>Founder</p>
-      <p>425-495-9974</p>
-      <p>yenemartin@gmail.com</p>
+      <p><a href="tel:4254959974">425-495-9974</a></p>
+      <p><a href="mailto:yenemartin@gmail.com">yenemartin@gmail.com</a></p>
     </footer>
 
     <div class="lightbox" id="imageLightbox" hidden>
