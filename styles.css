@@ -116,8 +116,10 @@ a {
 .site-menu__panel {
   position: absolute;
   top: calc(100% + 0.55rem);
-  right: 0;
-  min-width: min(88vw, 280px);
+  left: 0;
+  right: auto;
+  width: min(88vw, 320px);
+  max-width: calc(100vw - 2rem);
   display: grid;
   gap: 0.45rem;
   padding: 0.65rem;
@@ -202,7 +204,7 @@ a {
 
 .hero__subtitle {
   margin: 0.7rem 0 0;
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 700;
 }
 
@@ -751,8 +753,11 @@ a {
 
 .lightbox__close {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: max(1rem, env(safe-area-inset-top));
+  right: max(1rem, env(safe-area-inset-right));
+  z-index: 60;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
 }
 
 @media (max-width: 720px) {
@@ -774,6 +779,13 @@ a {
 
   .lightbox__nav--next {
     right: 1rem;
+  }
+
+  .lightbox__close {
+    top: max(0.85rem, env(safe-area-inset-top));
+    right: max(0.85rem, env(safe-area-inset-right));
+    min-height: 48px;
+    padding: 0.75rem 1rem;
   }
 }
 
