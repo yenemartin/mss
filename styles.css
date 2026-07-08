@@ -46,6 +46,36 @@ a {
   padding: 1rem 0 2rem;
 }
 
+.site-nav {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 20;
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: var(--surface-soft);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
 .hero {
   display: grid;
   gap: 1rem;
@@ -235,6 +265,11 @@ a {
   margin-top: 1rem;
 }
 
+.contact-panel-section,
+.inquiry-section {
+  margin-top: 1rem;
+}
+
 .support-grid,
 .product-grid {
   display: grid;
@@ -383,6 +418,66 @@ a {
   border-radius: 999px;
   background: var(--surface-soft);
   font-weight: 700;
+}
+
+.inquiry-card {
+  display: grid;
+  gap: 0.6rem;
+  padding: 1.15rem;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+}
+
+.inquiry-card strong {
+  font-size: 1.08rem;
+}
+
+.inquiry-card span,
+.inquiry-form__note {
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+.inquiry-form {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 0.2rem;
+}
+
+.inquiry-form label {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 700;
+}
+
+.inquiry-form input,
+.inquiry-form textarea {
+  width: 100%;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #ffffff;
+  color: var(--text);
+  font: inherit;
+}
+
+.inquiry-form__button {
+  min-height: 48px;
+  padding: 0.8rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(145deg, var(--brand) 0%, var(--brand-deep) 100%);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.inquiry-form__note {
+  margin: 0;
 }
 
 .site-footer {

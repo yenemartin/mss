@@ -6,6 +6,8 @@ const lightboxImage = document.querySelector("#lightboxImage");
 const lightboxClose = document.querySelector("#lightboxClose");
 const lightboxPrev = document.querySelector("#lightboxPrev");
 const lightboxNext = document.querySelector("#lightboxNext");
+const inquiryForm = document.querySelector("#inquiryForm");
+const inquiryNote = document.querySelector("#inquiryNote");
 
 if (visualSlides.length && visualDots.length) {
   let activeVisualIndex = 0;
@@ -107,6 +109,37 @@ if (lightbox && lightboxImage && lightboxClose && lightboxPrev && lightboxNext &
     if (event.key === "ArrowRight" && !lightbox.hidden) {
       renderLightboxImage(activeLightboxIndex + 1);
       startLightboxRotation();
+    }
+  });
+}
+
+if (inquiryForm && inquiryNote) {
+  inquiryForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(inquiryForm);
+    const name = String(formData.get("name") || "").trim();
+    const business = String(formData.get("business") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+
+    const inquiryText = [
+      "Inquiry for Mengesha Software Solutions",
+      "",
+      `Name: ${name || "Not provided"}`,
+      `Business: ${business || "Not provided"}`,
+      `Email: ${email || "Not provided"}`,
+      "",
+      "Project details:",
+      message || "Not provided",
+    ].join("\n");
+
+    try {
+      await navigator.clipboard.writeText(inquiryText);
+      inquiryNote.textContent = "Inquiry copied. Send it to yenemartin@gmail.com.";
+    } catch (error) {
+      inquiryNote.textContent =
+        "Copy failed in this browser. Please copy the details manually and send them to yenemartin@gmail.com.";
     }
   });
 }
