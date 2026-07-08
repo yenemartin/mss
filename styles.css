@@ -318,6 +318,11 @@ a {
 
 .product-card {
   overflow: hidden;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .product-card img {
@@ -330,6 +335,54 @@ a {
   display: grid;
   gap: 0.35rem;
   padding: 1rem 1.05rem 1.1rem;
+}
+
+.product-card:hover,
+.product-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(67, 162, 240, 0.34);
+}
+
+.contact-panel-section {
+  margin-top: 1rem;
+}
+
+.contact-panel-card {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1.15rem;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+}
+
+.contact-panel-card strong {
+  font-size: 1.08rem;
+}
+
+.contact-panel-card span {
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+.contact-panel-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+
+.contact-panel-card__actions span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: var(--surface-soft);
+  font-weight: 700;
 }
 
 .site-footer {
