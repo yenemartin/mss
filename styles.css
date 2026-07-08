@@ -235,14 +235,6 @@ a {
   margin-top: 1rem;
 }
 
-.support__intro {
-  margin: 0 0 0.9rem;
-  color: var(--text);
-  font-size: 0.98rem;
-  font-weight: 700;
-  line-height: 1.55;
-}
-
 .support-grid,
 .product-grid {
   display: grid;
