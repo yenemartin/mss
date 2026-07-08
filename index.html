@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mengesha Software Solutions</title>
+    <meta
+      name="description"
+      content="Mengesha Software Solutions builds software that helps local businesses grow."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero">
+        <div class="hero__brand">
+          <img
+            class="hero__logo"
+            src="assets/logo-mark.png"
+            alt="Mengesha Software Solutions logo"
+          />
+          <div class="hero__copy">
+            <p class="hero__eyebrow">Mengesha Software Solutions</p>
+            <h1>Mengesha Software Solutions</h1>
+            <p class="hero__subtitle">Software That Helps Local Businesses Grow</p>
+            <a class="hero__cta" href="#options">See what we have built</a>
+          </div>
+        </div>
+
+        <div class="hero__visuals" aria-label="Brand and product visuals">
+          <div class="visual-carousel" id="visualCarousel">
+            <article class="visual-card visual-card--contain is-active">
+              <img
+                src="assets/business-card-v2.png"
+                alt="Mengesha Software Solutions business card"
+                data-fullscreen="true"
+              />
+            </article>
+            <article class="visual-card visual-card--contain">
+              <img
+                src="assets/logo-mark.png"
+                alt="Mengesha Software Solutions logo"
+                data-fullscreen="true"
+              />
+            </article>
+            <article class="visual-card visual-card--preview">
+              <img
+                src="assets/zema-site.png"
+                alt="Zema Restaurant website preview"
+                data-fullscreen="true"
+              />
+            </article>
+            <article class="visual-card visual-card--preview">
+              <img
+                src="assets/afhcares-site.png"
+                alt="Adult home care website preview"
+                data-fullscreen="true"
+              />
+            </article>
+          </div>
+          <div class="visual-dots" aria-label="Image carousel navigation">
+            <button class="visual-dot is-active" type="button" aria-label="Show business card"></button>
+            <button class="visual-dot" type="button" aria-label="Show logo"></button>
+            <button class="visual-dot" type="button" aria-label="Show Zema Restaurant preview"></button>
+            <button class="visual-dot" type="button" aria-label="Show Adult Home Care preview"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="options" id="options" aria-label="Explore options">
+        <a class="option-card" href="https://zemarestaurant.com/" target="_blank" rel="noreferrer">
+          <span class="option-card__icon" aria-hidden="true">🍽</span>
+          <span class="option-card__title">Zema Restaurant</span>
+          <span class="option-card__text">Live ordering platform</span>
+        </a>
+
+        <a
+          class="option-card"
+          href="https://mmengesha.afhcares.com/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span class="option-card__icon" aria-hidden="true">🏠</span>
+          <span class="option-card__title">Adult Home Care</span>
+          <span class="option-card__text">Care business website and platform</span>
+        </a>
+
+        <a class="option-card" href="#" aria-label="Our Portfolio placeholder link">
+          <span class="option-card__icon" aria-hidden="true">📁</span>
+          <span class="option-card__title">Our Portfolio</span>
+          <span class="option-card__text">Projects and customer stories</span>
+        </a>
+
+        <a class="option-card" href="mailto:yenemartin@gmail.com">
+          <span class="option-card__icon" aria-hidden="true">📞</span>
+          <span class="option-card__title">Book a Free Consultation</span>
+          <span class="option-card__text">Let's talk about your business</span>
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Mirtneh Mengesha</p>
+      <p>Founder</p>
+      <a href="tel:4254959974">425-495-9974</a>
+      <a href="mailto:yenemartin@gmail.com">yenemartin@gmail.com</a>
+    </footer>
+
+    <div class="lightbox" id="imageLightbox" hidden>
+      <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Close full screen image">
+        Close
+      </button>
+      <img class="lightbox__image" id="lightboxImage" alt="" />
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
