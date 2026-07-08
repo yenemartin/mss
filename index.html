@@ -19,19 +19,14 @@
   </head>
   <body>
     <main class="page-shell">
-      <section class="top-brand" aria-label="Mengesha Software Solutions brand">
-        <img
-          class="top-brand__logo"
-          src="assets/logo-mark.png"
-          alt="Mengesha Software Solutions logo"
-        />
-        <div class="top-brand__copy">
-          <p class="top-brand__name">Mengesha Software Solutions</p>
-          <p class="top-brand__tagline">Software That Helps Local Businesses Grow</p>
-        </div>
-      </section>
-
       <header class="site-nav" aria-label="Section navigation">
+        <a class="site-nav__brand" href="#top" aria-label="Go to top">
+          <img
+            class="site-nav__logo"
+            src="assets/logo-mark.png"
+            alt="Mengesha Software Solutions logo"
+          />
+        </a>
         <details class="site-menu">
           <summary>Menu</summary>
           <nav class="site-menu__panel">
@@ -94,6 +89,10 @@
                 data-fullscreen="true"
               />
             </article>
+          </div>
+          <div class="carousel-controls" aria-label="Picture carousel controls">
+            <button class="carousel-button" id="visualPrev" type="button">Prev</button>
+            <button class="carousel-button" id="visualNext" type="button">Next</button>
           </div>
           <div class="visual-dots" aria-label="Image carousel navigation">
             <button class="visual-dot is-active" type="button" aria-label="Show business card"></button>
@@ -190,45 +189,59 @@
 
       <section class="products" id="products" aria-label="Products and users">
         <p class="section-label">Products and users</p>
-        <div class="product-grid">
-          <a
-            class="product-card"
-            href="https://zemarestaurant.com/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img src="assets/zema-site.png" alt="Zema Restaurant product preview" />
-            <div class="product-card__body">
-              <strong>Zema Restaurant</strong>
-              <span>Restaurant guests ordering online and discovering the brand.</span>
-            </div>
-          </a>
+        <div class="product-carousel" id="productCarousel">
+          <div class="product-track">
+            <a
+              class="product-card is-active"
+              href="https://zemarestaurant.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src="assets/zema-site.png" alt="Zema Restaurant product preview" />
+              <div class="product-card__body">
+                <strong>Zema Restaurant</strong>
+                <span>Restaurant guests ordering online and discovering the brand.</span>
+                <span class="product-card__link">Open live site</span>
+              </div>
+            </a>
 
-          <a
-            class="product-card"
-            href="https://mmengesha.afhcares.com/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img src="assets/afhcares-site.png" alt="Adult Home Care product preview" />
-            <div class="product-card__body">
-              <strong>Adult Home Care</strong>
-              <span>Families and care clients learning about services and support.</span>
-            </div>
-          </a>
+            <a
+              class="product-card"
+              href="https://mmengesha.afhcares.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src="assets/afhcares-site.png" alt="Adult Home Care product preview" />
+              <div class="product-card__body">
+                <strong>Adult Home Care</strong>
+                <span>Families and care clients learning about services and support.</span>
+                <span class="product-card__link">Open live site</span>
+              </div>
+            </a>
 
-          <a
-            class="product-card"
-            href="https://tastesofethiopia.eth-restaurant.com/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img src="assets/tastesofethiopia-site.png" alt="Tastes of Ethiopia product preview" />
-            <div class="product-card__body">
-              <strong>Tastes of Ethiopia</strong>
-              <span>Food truck customers following the truck, picking a stop, and ordering ahead.</span>
-            </div>
-          </a>
+            <a
+              class="product-card"
+              href="https://tastesofethiopia.eth-restaurant.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src="assets/tastesofethiopia-site.png" alt="Tastes of Ethiopia product preview" />
+              <div class="product-card__body">
+                <strong>Tastes of Ethiopia</strong>
+                <span>Food truck customers following the truck, picking a stop, and ordering ahead.</span>
+                <span class="product-card__link">Open live site</span>
+              </div>
+            </a>
+          </div>
+          <div class="carousel-controls" aria-label="Product carousel controls">
+            <button class="carousel-button" id="productPrev" type="button">Prev</button>
+            <button class="carousel-button" id="productNext" type="button">Next</button>
+          </div>
+          <div class="visual-dots visual-dots--products" aria-label="Product carousel navigation">
+            <button class="visual-dot is-active" type="button" aria-label="Show Zema Restaurant"></button>
+            <button class="visual-dot" type="button" aria-label="Show Adult Home Care"></button>
+            <button class="visual-dot" type="button" aria-label="Show Tastes of Ethiopia"></button>
+          </div>
         </div>
       </section>
 

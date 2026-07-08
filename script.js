@@ -1,5 +1,11 @@
 const visualSlides = Array.from(document.querySelectorAll(".visual-card"));
-const visualDots = Array.from(document.querySelectorAll(".visual-dot"));
+const visualDots = Array.from(document.querySelectorAll(".hero__visuals .visual-dot"));
+const visualPrev = document.querySelector("#visualPrev");
+const visualNext = document.querySelector("#visualNext");
+const productSlides = Array.from(document.querySelectorAll(".product-track .product-card"));
+const productDots = Array.from(document.querySelectorAll(".visual-dots--products .visual-dot"));
+const productPrev = document.querySelector("#productPrev");
+const productNext = document.querySelector("#productNext");
 const fullscreenImages = Array.from(document.querySelectorAll("[data-fullscreen='true']"));
 const lightbox = document.querySelector("#imageLightbox");
 const lightboxImage = document.querySelector("#lightboxImage");
@@ -7,40 +13,82 @@ const lightboxClose = document.querySelector("#lightboxClose");
 const lightboxPrev = document.querySelector("#lightboxPrev");
 const lightboxNext = document.querySelector("#lightboxNext");
 
-if (visualSlides.length && visualDots.length) {
-  let activeVisualIndex = 0;
-  let visualTimerId = null;
+const setupCarousel = ({ slides, dots, prevButton, nextButton, intervalMs }) => {
+  if (!slides.length) {
+    return;
+  }
 
-  const renderVisual = (index) => {
-    activeVisualIndex = index;
+  let activeIndex = 0;
+  let timerId = null;
 
-    visualSlides.forEach((slide, slideIndex) => {
-      slide.classList.toggle("is-active", slideIndex === index);
+  const render = (index) => {
+    activeIndex = (index + slides.length) % slides.length;
+
+    slides.forEach((slide, slideIndex) => {
+      const isActive = slideIndex === activeIndex;
+      slide.classList.toggle("is-active", isActive);
+      slide.setAttribute("aria-hidden", String(!isActive));
+      if ("tabIndex" in slide) {
+        slide.tabIndex = isActive ? 0 : -1;
+      }
     });
 
-    visualDots.forEach((dot, dotIndex) => {
-      dot.classList.toggle("is-active", dotIndex === index);
+    dots.forEach((dot, dotIndex) => {
+      dot.classList.toggle("is-active", dotIndex === activeIndex);
     });
   };
 
-  const startVisualRotation = () => {
-    clearInterval(visualTimerId);
-    visualTimerId = window.setInterval(() => {
-      const nextIndex = (activeVisualIndex + 1) % visualSlides.length;
-      renderVisual(nextIndex);
-    }, 3600);
+  const startRotation = () => {
+    if (slides.length < 2) {
+      return;
+    }
+
+    clearInterval(timerId);
+    timerId = window.setInterval(() => {
+      render(activeIndex + 1);
+    }, intervalMs);
   };
 
-  visualDots.forEach((dot, index) => {
+  dots.forEach((dot, index) => {
     dot.addEventListener("click", () => {
-      renderVisual(index);
-      startVisualRotation();
+      render(index);
+      startRotation();
     });
   });
 
-  renderVisual(0);
-  startVisualRotation();
+  if (prevButton) {
+    prevButton.addEventListener("click", () => {
+      render(activeIndex - 1);
+      startRotation();
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener("click", () => {
+      render(activeIndex + 1);
+      startRotation();
+    });
+  }
+
+  render(0);
+  startRotation();
 }
+
+setupCarousel({
+  slides: visualSlides,
+  dots: visualDots,
+  prevButton: visualPrev,
+  nextButton: visualNext,
+  intervalMs: 3600,
+});
+
+setupCarousel({
+  slides: productSlides,
+  dots: productDots,
+  prevButton: productPrev,
+  nextButton: productNext,
+  intervalMs: 4200,
+});
 
 if (lightbox && lightboxImage && lightboxClose && lightboxPrev && lightboxNext && fullscreenImages.length) {
   let activeLightboxIndex = 0;
@@ -109,4 +157,4 @@ if (lightbox && lightboxImage && lightboxClose && lightboxPrev && lightboxNext &
       startLightboxRotation();
     }
   });
-}
+};
