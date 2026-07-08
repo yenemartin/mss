@@ -4,6 +4,8 @@ const fullscreenImages = Array.from(document.querySelectorAll("[data-fullscreen=
 const lightbox = document.querySelector("#imageLightbox");
 const lightboxImage = document.querySelector("#lightboxImage");
 const lightboxClose = document.querySelector("#lightboxClose");
+const lightboxPrev = document.querySelector("#lightboxPrev");
+const lightboxNext = document.querySelector("#lightboxNext");
 
 if (visualSlides.length && visualDots.length) {
   let activeVisualIndex = 0;
@@ -40,8 +42,26 @@ if (visualSlides.length && visualDots.length) {
   startVisualRotation();
 }
 
-if (lightbox && lightboxImage && lightboxClose && fullscreenImages.length) {
+if (lightbox && lightboxImage && lightboxClose && lightboxPrev && lightboxNext && fullscreenImages.length) {
+  let activeLightboxIndex = 0;
+  let lightboxTimerId = null;
+
+  const renderLightboxImage = (index) => {
+    activeLightboxIndex = (index + fullscreenImages.length) % fullscreenImages.length;
+    const image = fullscreenImages[activeLightboxIndex];
+    lightboxImage.src = image.currentSrc || image.src;
+    lightboxImage.alt = image.alt;
+  };
+
+  const startLightboxRotation = () => {
+    clearInterval(lightboxTimerId);
+    lightboxTimerId = window.setInterval(() => {
+      renderLightboxImage(activeLightboxIndex + 1);
+    }, 3200);
+  };
+
   const closeLightbox = () => {
+    clearInterval(lightboxTimerId);
     lightbox.hidden = true;
     lightboxImage.removeAttribute("src");
     lightboxImage.alt = "";
@@ -50,14 +70,23 @@ if (lightbox && lightboxImage && lightboxClose && fullscreenImages.length) {
 
   fullscreenImages.forEach((image) => {
     image.addEventListener("click", () => {
-      lightboxImage.src = image.currentSrc || image.src;
-      lightboxImage.alt = image.alt;
+      activeLightboxIndex = fullscreenImages.indexOf(image);
+      renderLightboxImage(activeLightboxIndex);
       lightbox.hidden = false;
       document.body.style.overflow = "hidden";
+      startLightboxRotation();
     });
   });
 
   lightboxClose.addEventListener("click", closeLightbox);
+  lightboxPrev.addEventListener("click", () => {
+    renderLightboxImage(activeLightboxIndex - 1);
+    startLightboxRotation();
+  });
+  lightboxNext.addEventListener("click", () => {
+    renderLightboxImage(activeLightboxIndex + 1);
+    startLightboxRotation();
+  });
 
   lightbox.addEventListener("click", (event) => {
     if (event.target === lightbox) {
@@ -68,6 +97,16 @@ if (lightbox && lightboxImage && lightboxClose && fullscreenImages.length) {
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !lightbox.hidden) {
       closeLightbox();
+    }
+
+    if (event.key === "ArrowLeft" && !lightbox.hidden) {
+      renderLightboxImage(activeLightboxIndex - 1);
+      startLightboxRotation();
+    }
+
+    if (event.key === "ArrowRight" && !lightbox.hidden) {
+      renderLightboxImage(activeLightboxIndex + 1);
+      startLightboxRotation();
     }
   });
 }
