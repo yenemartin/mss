@@ -7,6 +7,8 @@ const productSlides = Array.from(document.querySelectorAll(".product-track .prod
 const productDots = Array.from(document.querySelectorAll(".visual-dots--products .visual-dot"));
 const productPrev = document.querySelector("#productPrev");
 const productNext = document.querySelector("#productNext");
+const siteMenu = document.querySelector(".site-menu");
+const siteMenuLinks = Array.from(document.querySelectorAll(".site-menu__panel a"));
 
 const fullscreenImages = Array.from(document.querySelectorAll("[data-fullscreen='true']"));
 const lightbox = document.querySelector("#imageLightbox");
@@ -104,6 +106,14 @@ setupCarousel({
   nextButton: productNext,
   intervalMs: 4200,
 });
+
+if (siteMenu && siteMenuLinks.length) {
+  siteMenuLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      siteMenu.open = false;
+    });
+  });
+}
 
 if (lightbox && lightboxImage && lightboxClose && lightboxPrev && lightboxNext && fullscreenImages.length) {
   let activeLightboxIndex = 0;
