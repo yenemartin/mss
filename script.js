@@ -19,7 +19,7 @@ const setupCarousel = ({ slides, dots, prevButton, nextButton, intervalMs }) => 
   }
 
   let activeIndex = 0;
-  let timerId = null;
+  let timerId = 0;
 
   const render = (index) => {
     activeIndex = (index + slides.length) % slides.length;
@@ -43,10 +43,15 @@ const setupCarousel = ({ slides, dots, prevButton, nextButton, intervalMs }) => 
       return;
     }
 
-    clearInterval(timerId);
-    timerId = window.setInterval(() => {
+    window.clearTimeout(timerId);
+    timerId = window.setTimeout(() => {
       render(activeIndex + 1);
+      startRotation();
     }, intervalMs);
+  };
+
+  const stopRotation = () => {
+    window.clearTimeout(timerId);
   };
 
   dots.forEach((dot, index) => {
@@ -70,9 +75,14 @@ const setupCarousel = ({ slides, dots, prevButton, nextButton, intervalMs }) => 
     });
   }
 
+  slides.forEach((slide) => {
+    slide.addEventListener("mouseenter", stopRotation);
+    slide.addEventListener("mouseleave", startRotation);
+  });
+
   render(0);
   startRotation();
-}
+};
 
 setupCarousel({
   slides: visualSlides,
