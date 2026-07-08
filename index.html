@@ -60,39 +60,53 @@
         </div>
 
         <div class="hero__visuals" aria-label="Brand and product visuals">
-          <div class="visual-carousel" id="visualCarousel">
-            <article class="visual-card visual-card--contain is-active">
-              <img
-                src="assets/business-card-v2.png"
-                alt="Mengesha Software Solutions business card"
-                data-fullscreen="true"
-              />
-            </article>
-            <article class="visual-card visual-card--contain">
-              <img
-                src="assets/logo-mark.png"
-                alt="Mengesha Software Solutions logo"
-                data-fullscreen="true"
-              />
-            </article>
-            <article class="visual-card visual-card--preview">
-              <img
-                src="assets/zema-site.png"
-                alt="Zema Restaurant website preview"
-                data-fullscreen="true"
-              />
-            </article>
-            <article class="visual-card visual-card--preview">
-              <img
-                src="assets/afhcares-site.png"
-                alt="Adult home care website preview"
-                data-fullscreen="true"
-              />
-            </article>
-          </div>
-          <div class="carousel-controls" aria-label="Picture carousel controls">
-            <button class="carousel-button" id="visualPrev" type="button">Prev</button>
-            <button class="carousel-button" id="visualNext" type="button">Next</button>
+          <div class="carousel-shell">
+            <div class="visual-carousel" id="visualCarousel">
+              <article class="visual-card visual-card--contain is-active">
+                <img
+                  src="assets/business-card-v2.png"
+                  alt="Mengesha Software Solutions business card"
+                  data-fullscreen="true"
+                />
+              </article>
+              <article class="visual-card visual-card--contain">
+                <img
+                  src="assets/logo-mark.png"
+                  alt="Mengesha Software Solutions logo"
+                  data-fullscreen="true"
+                />
+              </article>
+              <article class="visual-card visual-card--preview">
+                <img
+                  src="assets/zema-site.png"
+                  alt="Zema Restaurant website preview"
+                  data-fullscreen="true"
+                />
+              </article>
+              <article class="visual-card visual-card--preview">
+                <img
+                  src="assets/afhcares-site.png"
+                  alt="Adult home care website preview"
+                  data-fullscreen="true"
+                />
+              </article>
+            </div>
+            <button
+              class="carousel-button carousel-button--overlay carousel-button--prev"
+              id="visualPrev"
+              type="button"
+              aria-label="Previous picture"
+            >
+              <span aria-hidden="true">&#8249;</span>
+            </button>
+            <button
+              class="carousel-button carousel-button--overlay carousel-button--next"
+              id="visualNext"
+              type="button"
+              aria-label="Next picture"
+            >
+              <span aria-hidden="true">&#8250;</span>
+            </button>
           </div>
           <div class="visual-dots" aria-label="Image carousel navigation">
             <button class="visual-dot is-active" type="button" aria-label="Show business card"></button>
@@ -202,52 +216,66 @@
       <section class="products" id="products" aria-label="Products and users">
         <p class="section-label">Products and users</p>
         <div class="product-carousel" id="productCarousel">
-          <div class="product-track">
-            <a
-              class="product-card is-active"
-              href="https://zemarestaurant.com/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img src="assets/zema-site.png" alt="Zema Restaurant product preview" />
-              <div class="product-card__body">
-                <strong>Zema Restaurant</strong>
-                <span>Restaurant guests ordering online and discovering the brand.</span>
-                <span class="product-card__link">Open live site</span>
-              </div>
-            </a>
+          <div class="carousel-shell">
+            <div class="product-track">
+              <a
+                class="product-card is-active"
+                href="https://zemarestaurant.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src="assets/zema-site.png" alt="Zema Restaurant product preview" />
+                <div class="product-card__body">
+                  <strong>Zema Restaurant</strong>
+                  <span>Restaurant guests ordering online and discovering the brand.</span>
+                  <span class="product-card__link">Open live site</span>
+                </div>
+              </a>
 
-            <a
-              class="product-card"
-              href="https://mmengesha.afhcares.com/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img src="assets/afhcares-site.png" alt="Adult Home Care product preview" />
-              <div class="product-card__body">
-                <strong>Adult Home Care</strong>
-                <span>Families and care clients learning about services and support.</span>
-                <span class="product-card__link">Open live site</span>
-              </div>
-            </a>
+              <a
+                class="product-card"
+                href="https://mmengesha.afhcares.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src="assets/afhcares-site.png" alt="Adult Home Care product preview" />
+                <div class="product-card__body">
+                  <strong>Adult Home Care</strong>
+                  <span>Families and care clients learning about services and support.</span>
+                  <span class="product-card__link">Open live site</span>
+                </div>
+              </a>
 
-            <a
-              class="product-card"
-              href="https://tastesofethiopia.eth-restaurant.com/"
-              target="_blank"
-              rel="noreferrer"
+              <a
+                class="product-card"
+                href="https://tastesofethiopia.eth-restaurant.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src="assets/tastesofethiopia-site.png" alt="Tastes of Ethiopia product preview" />
+                <div class="product-card__body">
+                  <strong>Tastes of Ethiopia</strong>
+                  <span>Food truck customers following the truck, picking a stop, and ordering ahead.</span>
+                  <span class="product-card__link">Open live site</span>
+                </div>
+              </a>
+            </div>
+            <button
+              class="carousel-button carousel-button--overlay carousel-button--prev"
+              id="productPrev"
+              type="button"
+              aria-label="Previous product"
             >
-              <img src="assets/tastesofethiopia-site.png" alt="Tastes of Ethiopia product preview" />
-              <div class="product-card__body">
-                <strong>Tastes of Ethiopia</strong>
-                <span>Food truck customers following the truck, picking a stop, and ordering ahead.</span>
-                <span class="product-card__link">Open live site</span>
-              </div>
-            </a>
-          </div>
-          <div class="carousel-controls" aria-label="Product carousel controls">
-            <button class="carousel-button" id="productPrev" type="button">Prev</button>
-            <button class="carousel-button" id="productNext" type="button">Next</button>
+              <span aria-hidden="true">&#8249;</span>
+            </button>
+            <button
+              class="carousel-button carousel-button--overlay carousel-button--next"
+              id="productNext"
+              type="button"
+              aria-label="Next product"
+            >
+              <span aria-hidden="true">&#8250;</span>
+            </button>
           </div>
           <div class="visual-dots visual-dots--products" aria-label="Product carousel navigation">
             <button class="visual-dot is-active" type="button" aria-label="Show Zema Restaurant"></button>

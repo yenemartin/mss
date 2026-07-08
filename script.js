@@ -2,10 +2,12 @@ const visualSlides = Array.from(document.querySelectorAll(".visual-card"));
 const visualDots = Array.from(document.querySelectorAll(".hero__visuals .visual-dot"));
 const visualPrev = document.querySelector("#visualPrev");
 const visualNext = document.querySelector("#visualNext");
+
 const productSlides = Array.from(document.querySelectorAll(".product-track .product-card"));
 const productDots = Array.from(document.querySelectorAll(".visual-dots--products .visual-dot"));
 const productPrev = document.querySelector("#productPrev");
 const productNext = document.querySelector("#productNext");
+
 const fullscreenImages = Array.from(document.querySelectorAll("[data-fullscreen='true']"));
 const lightbox = document.querySelector("#imageLightbox");
 const lightboxImage = document.querySelector("#lightboxImage");
@@ -15,11 +17,11 @@ const lightboxNext = document.querySelector("#lightboxNext");
 
 const setupCarousel = ({ slides, dots, prevButton, nextButton, intervalMs }) => {
   if (!slides.length) {
-    return;
+    return null;
   }
 
   let activeIndex = 0;
-  let timerId = null;
+  let timerId = 0;
 
   const render = (index) => {
     activeIndex = (index + slides.length) % slides.length;
@@ -28,14 +30,16 @@ const setupCarousel = ({ slides, dots, prevButton, nextButton, intervalMs }) => 
       const isActive = slideIndex === activeIndex;
       slide.classList.toggle("is-active", isActive);
       slide.setAttribute("aria-hidden", String(!isActive));
-      if ("tabIndex" in slide) {
-        slide.tabIndex = isActive ? 0 : -1;
-      }
     });
 
     dots.forEach((dot, dotIndex) => {
       dot.classList.toggle("is-active", dotIndex === activeIndex);
+      dot.setAttribute("aria-pressed", String(dotIndex === activeIndex));
     });
+  };
+
+  const stopRotation = () => {
+    window.clearTimeout(timerId);
   };
 
   const startRotation = () => {
@@ -43,9 +47,10 @@ const setupCarousel = ({ slides, dots, prevButton, nextButton, intervalMs }) => 
       return;
     }
 
-    clearInterval(timerId);
-    timerId = window.setInterval(() => {
+    stopRotation();
+    timerId = window.setTimeout(() => {
       render(activeIndex + 1);
+      startRotation();
     }, intervalMs);
   };
 
@@ -70,9 +75,19 @@ const setupCarousel = ({ slides, dots, prevButton, nextButton, intervalMs }) => 
     });
   }
 
+  slides.forEach((slide) => {
+    slide.addEventListener("mouseenter", stopRotation);
+    slide.addEventListener("mouseleave", startRotation);
+  });
+
   render(0);
   startRotation();
-}
+
+  return {
+    stopRotation,
+    startRotation,
+  };
+};
 
 setupCarousel({
   slides: visualSlides,
@@ -92,7 +107,7 @@ setupCarousel({
 
 if (lightbox && lightboxImage && lightboxClose && lightboxPrev && lightboxNext && fullscreenImages.length) {
   let activeLightboxIndex = 0;
-  let lightboxTimerId = null;
+  let lightboxTimerId = 0;
 
   const renderLightboxImage = (index) => {
     activeLightboxIndex = (index + fullscreenImages.length) % fullscreenImages.length;
@@ -101,25 +116,29 @@ if (lightbox && lightboxImage && lightboxClose && lightboxPrev && lightboxNext &
     lightboxImage.alt = image.alt;
   };
 
+  const stopLightboxRotation = () => {
+    window.clearTimeout(lightboxTimerId);
+  };
+
   const startLightboxRotation = () => {
-    clearInterval(lightboxTimerId);
-    lightboxTimerId = window.setInterval(() => {
+    stopLightboxRotation();
+    lightboxTimerId = window.setTimeout(() => {
       renderLightboxImage(activeLightboxIndex + 1);
+      startLightboxRotation();
     }, 3200);
   };
 
   const closeLightbox = () => {
-    clearInterval(lightboxTimerId);
+    stopLightboxRotation();
     lightbox.hidden = true;
     lightboxImage.removeAttribute("src");
     lightboxImage.alt = "";
     document.body.style.overflow = "";
   };
 
-  fullscreenImages.forEach((image) => {
+  fullscreenImages.forEach((image, index) => {
     image.addEventListener("click", () => {
-      activeLightboxIndex = fullscreenImages.indexOf(image);
-      renderLightboxImage(activeLightboxIndex);
+      renderLightboxImage(index);
       lightbox.hidden = false;
       document.body.style.overflow = "hidden";
       startLightboxRotation();
@@ -157,4 +176,4 @@ if (lightbox && lightboxImage && lightboxClose && lightboxPrev && lightboxNext &
       startLightboxRotation();
     }
   });
-};
+}
